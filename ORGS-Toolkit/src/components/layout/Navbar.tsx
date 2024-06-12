@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
 import LogoGithub from './../../images/GitHub-Logo.svg';
-import DevelopedBy from '../pages/DevelopedBy';
 
 function Navbar(): JSX.Element {
 

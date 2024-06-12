@@ -6,7 +6,7 @@ function DevelopedBy(): JSX.Element {
         <div className="w-full">
             <h1 className="text-6xl p-10">Development Team:</h1>
 
-            <div className='flex justify-between mx-10 mb-10 wrap'>
+            <div className='flex justify-between mx-10 mb-10 flex-wrap'>
 
                 <DeveloperCard
                     name="Cayo"
@@ -24,7 +24,7 @@ function DevelopedBy(): JSX.Element {
 
                     photo="https://media.istockphoto.com/id/1415960925/pt/foto/a-close-up-shot-of-a-hand-and-a-sheet-of-paper-on-which-a-student-takes-notes-during-a-lecture.jpg?s=2048x2048&w=is&k=20&c=iqBFvwxfz2E-xUo3RA290chS3u0pUZze7pHSn3FquCI="
 
-                    developmentArea="front-end"
+                    developmentArea="frontend"
                     description="Full-stack developer at Video Som Auto Center and student at UTFPR"
                     github=" "
                     linkedIn=" "
