@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NumberSelector from '../form/NumberSelector';
 import SubmitButton from '../form/SubmitButton';
 
-function InputVariables(): JSX.Element {
+interface InputVariableRestrictionProps {
+    handleVariableRestriction: (variable: number, restriction: number) => void;
+}
+
+function InputVariableRestriction( { handleVariableRestriction }: InputVariableRestrictionProps): JSX.Element {
     // Consult the browser's localStorage to see if a value has already been set.
     // useState with a function initializer is used here to set the initial state based on localStorage data.
 
@@ -26,12 +30,17 @@ function InputVariables(): JSX.Element {
         return saved ? parseInt(saved, 10) : 1;
     });
 
-
     function submit(e: React.FormEvent<HTMLFormElement>): void {
+        // Prevent the page from reloading when the button is clicked
         e.preventDefault();
-        if (nVariable > 0 && nRestriction > 0) {
+        // If the values greater than zero, store them in local storage and pass them back to the parent component
+        if (nVariable > 0 && nRestriction > 0 && nVariable != null && nRestriction != null ) {
+            //set the itens in loca storage
             localStorage.setItem('nVariable', nVariable.toString());
             localStorage.setItem('nRestriction', nRestriction.toString());
+
+            // Return the values to the parent component
+            handleVariableRestriction(nVariable, nRestriction)
         }
     }
 
@@ -70,4 +79,4 @@ function InputVariables(): JSX.Element {
     )
 }
 
-export default InputVariables
+export default InputVariableRestriction

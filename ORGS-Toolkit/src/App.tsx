@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/linearprogramming" element={<LinearProgramming />} />
-            <Route path="/simplex" element={<Simplex />} />
+            <Route path="/simplex/*" element={<Simplex />} />
             <Route path="/developedby" element={<DevelopedBy/>} />
           </Routes>
 
