@@ -52,7 +52,7 @@ function InputVariableRestriction( { handleVariableRestriction }: InputVariableR
                 <div className='flex justify-center'>
                     <NumberSelector
                         label='Number of Variables'
-                        numbers={Array.from({ length: 15 }, (_, index) => index + 1)}
+                        numbers={Array.from({ length: 25 }, (_, index) => index + 1)}
                         onNumberSelect={(e) => setnVariable(e)}
                         disabled=''
                         defaultValue={nVariable}
@@ -60,7 +60,7 @@ function InputVariableRestriction( { handleVariableRestriction }: InputVariableR
 
                     <NumberSelector
                         label='Number of Restrictions'
-                        numbers={Array.from({ length: 30 }, (_, index) => index + 1)}
+                        numbers={Array.from({ length: 40 }, (_, index) => index + 1)}
                         onNumberSelect={(e) => setnRestriction(e)}
                         disabled=''
                         defaultValue={nRestriction}

@@ -1,17 +1,50 @@
-interface VariableRestrictionFormProps{
-    nVariable: number; 
+import { useState } from "react";
+
+import { PurposeFuncOps } from './../../types/enum/PurposeFuncOps'
+import InputVariables from "./InputVariables";
+
+interface VariableRestrictionFormProps {
+    nVariable: number;
     nRestriction: number;
+    setFunctionValues: (functionValues: number[]) => void;
+    setPurposeFuncOpsInput: (purposeFunc: PurposeFuncOps) => void;
 }
 
-function VariableRestrictionForm({ nVariable, nRestriction }: VariableRestrictionFormProps){
+function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, setPurposeFuncOpsInput }: VariableRestrictionFormProps) {
+
+    //Using the state with the ePurposeFuncOps
+    const [purposeFunc, setPurposeFunc] = useState<PurposeFuncOps>(PurposeFuncOps.Maximize);
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setPurposeFunc(e.target.value as PurposeFuncOps);
+        setPurposeFuncOpsInput(e.target.value as PurposeFuncOps)
+    };
 
     return (
-        <div>
+        <div className="mt-2">
+            <div className='m-5'>
+                <h1 className="p-1 text-xl">What is the purpose of the function?</h1>
+                <select
+                    className='border border-black p-1 rounded-md px-3'
+                    value={purposeFunc}
+                    onChange={handleSelectChange}
+                >
+                    {/* Associando os valores do enum às opções */}
+                    <option value={PurposeFuncOps.Maximize}>{PurposeFuncOps.Maximize}</option>
+                    <option value={PurposeFuncOps.Minimize}>{PurposeFuncOps.Minimize}</option>
+                </select>
+            </div>
+
+            <InputVariables 
+                nVariable = {nVariable}
+                hangleChange={setFunctionValues} 
+            />
+           
             <div>
-                {nVariable} - {nRestriction}
+               
             </div>
         </div>
-    )
+    );
 }
 
-export default VariableRestrictionForm
+export default VariableRestrictionForm;
