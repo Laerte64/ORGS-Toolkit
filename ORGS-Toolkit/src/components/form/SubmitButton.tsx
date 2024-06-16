@@ -14,4 +14,4 @@ function SubmitButton({ text }: SubmitButtonProps): JSX.Element {
     );
   }
   
-  export default SubmitButton;
+export default SubmitButton;

@@ -43,7 +43,7 @@ function Simplex(): JSX.Element {
                 handleVariableRestriction={setVariableRestriction}
             />
 
-            {nVariable !== null && nRestriction !== null && (
+            {nVariable && nRestriction && (
                 <VariableRestrictionForm 
                     nVariable={nVariable}
                     nRestriction={nRestriction}

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { PurposeFuncOps } from './../../types/enum/PurposeFuncOps'
 import InputVariables from "./InputVariables";
+import InputRestrictions from "./InputRestrictions";
 
 interface VariableRestrictionFormProps {
     nVariable: number;
@@ -23,7 +24,9 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
     return (
         <div className="mt-2">
             <div className='m-5'>
+                
                 <h1 className="p-1 text-xl">What is the purpose of the function?</h1>
+
                 <select
                     className='border border-black p-1 rounded-md px-3'
                     value={purposeFunc}
@@ -35,14 +38,21 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
                 </select>
             </div>
 
-            <InputVariables 
-                nVariable = {nVariable}
-                hangleChange={setFunctionValues} 
-            />
-           
-            <div>
-               
+            <div className="flex justify-center">
+                <div className="bg-gray-100 p-5 rounded-xl">
+                    <InputVariables
+                        nVariable={nVariable}
+                        hangleChange={setFunctionValues}
+                    />
+
+                    <InputRestrictions
+                        nVariable={nVariable}
+                        nRestrictions={nRestriction}
+                    />
+
+                </div>
             </div>
+
         </div>
     );
 }

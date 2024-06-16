@@ -11,7 +11,7 @@ function NumberSelector({ label, numbers, onNumberSelect, disabled, defaultValue
 
   return (
     <div className='m-5'>
-
+      
       <h1 className="p-1 text-xl">{label}</h1>
 
       <select
