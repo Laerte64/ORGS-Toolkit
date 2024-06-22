@@ -11,7 +11,7 @@ function InputConstraintLimit({ onChangeInputConstraintLimit, xRestriction }: In
     return (
         <div className="pl-3">
             <input
-                className='border-2 border-black rounded-md text-center w-24'
+                className='border-2 border-black rounded-md text-center w-24 my-1'
                 name={"Limit" + xRestriction}
                 type="number"
                 onChange={handleInputChange}

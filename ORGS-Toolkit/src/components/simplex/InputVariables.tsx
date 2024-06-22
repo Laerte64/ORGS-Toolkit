@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import InputVariableValue from './../form/InputVariableValue';
+import InputVariableValue from './form/InputVariableValue';
 
 interface InputVariablesProps {
     nVariable: number;

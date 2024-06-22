@@ -38,7 +38,7 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
                 </select>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex-wrap justify-center">
                 <div className="bg-gray-100 p-5 rounded-xl">
                     <InputVariables
                         nVariable={nVariable}

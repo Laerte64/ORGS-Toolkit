@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import NumberSelector from '../form/NumberSelector';
-import SubmitButton from '../form/SubmitButton';
+import NumberSelector from './form/NumberSelector';
+import SubmitButton from './form/SubmitButton';
 
 interface InputVariableRestrictionProps {
     handleVariableRestriction: (variable: number, restriction: number) => void;

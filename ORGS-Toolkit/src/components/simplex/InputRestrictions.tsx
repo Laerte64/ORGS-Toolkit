@@ -1,6 +1,6 @@
-import InputConstraintLimit from "../form/InputConstraintLimit";
-import InputInequalityType from "../form/InputInequalityType";
-import InputRestrictionValue from "../form/InputRestriction";
+import InputConstraintLimit from "./form/InputConstraintLimit";
+import InputInequalityType from "./form/InputInequalityType";
+import InputRestrictionValue from "./form/InputRestriction";
 
 interface InputRestrictionsProps {
   nVariable: number;
@@ -23,47 +23,65 @@ function InputRestrictions({ nVariable, nRestrictions, handleRestrictionsValue }
   }
 
   return (
-    <div className="mt-5">
+    <div className="pt-5">
+
       <h1 className="pb-3 text-2xl font-bold">Restrictions:</h1>
-      <div className="flex justify-center">
+
+      <div className="flex-wrap justify-center">
+
         <div>
+
           {Array.from({ length: nRestrictions }, (_, index_) => (
-            <div className="flex" key={`restriction-${index_}`}>
+            <div className="flex justify-center " key={`restriction-${index_}`}>
+
               {Array.from({ length: nVariable }, (_, index) => (
                 <>
-                  <InputRestrictionValue
-                    key={index}
-                    xVariable={index + 1}
-                    xRestriction={index_ + 1}
-                    label={`x${index + 1}`}
-                    handleChange={ChangeRestrictions}
-                  />
 
-                  {index < nVariable - 1 && 
                   
-                  <div className="pr-1 text-xl">
-                    +
-                  </div>}
+                  <div className="flex justify-center p-1">
 
+
+
+                    <div className="flex">
+
+                      <InputRestrictionValue
+                        key={index}
+                        xVariable={index + 1}
+                        xRestriction={index_ + 1}
+                        label={`x${index + 1}`}
+                        handleChange={ChangeRestrictions}
+                      />
+
+                      {index < nVariable - 1 &&
+
+                        <div className="pr-1 text-xl">
+                          +
+                        </div>}
+
+                    </div>
+                  </div>
                 </>
+
               ))}
-  
+
               <InputInequalityType
                 onInequalitySelect={ChangeInequalitySelect}
                 xRestriction={index_ + 1}
               />
-  
-              <InputConstraintLimit 
-                onChangeInputConstraintLimit={ChangeConstraintLimit} 
+
+              <InputConstraintLimit
+                onChangeInputConstraintLimit={ChangeConstraintLimit}
                 xRestriction={index_ + 1}
               />
+
             </div>
           ))}
+
         </div>
+
       </div>
     </div>
   );
-  
 }
 
 export default InputRestrictions

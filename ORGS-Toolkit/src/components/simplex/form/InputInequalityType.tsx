@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ConstraintType } from './../../types/enum/InequalityTypeOps'
+import { ConstraintType } from '../../../types/enum/InequalityTypeOps'
 
 interface InputInequalityTypeProps {
     onInequalitySelect: (inequality: string, xRestriction: number) => void;
