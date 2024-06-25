@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NumberSelector from './form/NumberSelector';
 import SubmitButton from './form/SubmitButton';
 
@@ -6,7 +6,7 @@ interface InputVariableRestrictionProps {
     handleVariableRestriction: (variable: number, restriction: number) => void;
 }
 
-function InputVariableRestriction( { handleVariableRestriction }: InputVariableRestrictionProps): JSX.Element {
+function InputVariableRestriction({ handleVariableRestriction }: InputVariableRestrictionProps): JSX.Element {
     // Consult the browser's localStorage to see if a value has already been set.
     // useState with a function initializer is used here to set the initial state based on localStorage data.
 
@@ -30,52 +30,62 @@ function InputVariableRestriction( { handleVariableRestriction }: InputVariableR
         return saved ? parseInt(saved, 10) : 1;
     });
 
-    function submit(e: React.FormEvent<HTMLFormElement>): void {
-        // Prevent the page from reloading when the button is clicked
-        e.preventDefault();
-        // If the values greater than zero, store them in local storage and pass them back to the parent component
-        if (nVariable > 0 && nRestriction > 0 && nVariable != null && nRestriction != null ) {
-            //set the itens in loca storage
-            localStorage.setItem('nVariable', nVariable.toString());
-            localStorage.setItem('nRestriction', nRestriction.toString());
+    useEffect(() => {
+        const savedNRestriction = localStorage.getItem('nRestriction');
+        const savedNVariable = localStorage.getItem('nVariable');
 
+        if(savedNRestriction && savedNVariable){
+            onChange(savedNVariable ? parseInt(savedNVariable, 10) : 1, savedNRestriction ? parseInt(savedNRestriction, 10) : 1)
+        }
+    }, []); 
+
+    function onChange(nVariable_: number, nRestriction_: number): void {
+        if (nVariable_ > 0 && nRestriction_ > 0 && nVariable_ && nRestriction_) {
             // Return the values to the parent component
-            handleVariableRestriction(nVariable, nRestriction)
+            handleVariableRestriction(nVariable_, nRestriction_)
         }
     }
 
+    //function to onNumberSelect event of Variable 
+    function onChangeNVariable(e: number): void {
+        setnVariable(e)
+        //set the items in loca storage
+        localStorage.setItem('nVariable', e.toString());
+        onChange(e, nRestriction)
+    }
+
+    //function to onNumberSelect event of Restrictions
+    function onChangeNRestriction(e: number): void {
+        setnRestriction(e)
+        //set the items in loca storage
+        localStorage.setItem('nRestriction', e.toString());
+        onChange(nVariable, e)
+    }
+
     return (
-        <div>
 
-            <form onSubmit={submit} className='flex flex-col items-center'>
+        <div className='flex flex-col items-center'>
 
-                <div className='flex justify-center'>
-                    <NumberSelector
-                        label='Number of Variables'
-                        numbers={Array.from({ length: 25 }, (_, index) => index + 1)}
-                        onNumberSelect={(e) => setnVariable(e)}
-                        disabled=''
-                        defaultValue={nVariable}
-                    />
+            <div className='flex justify-center'>
+                <NumberSelector
+                    label='Number of Variables'
+                    numbers={Array.from({ length: 25 }, (_, index) => index + 1)}
+                    onNumberSelect={(e) => onChangeNVariable(e)}
+                    disabled=''
+                    defaultValue={nVariable}
+                />
 
-                    <NumberSelector
-                        label='Number of Restrictions'
-                        numbers={Array.from({ length: 40 }, (_, index) => index + 1)}
-                        onNumberSelect={(e) => setnRestriction(e)}
-                        disabled=''
-                        defaultValue={nRestriction}
-                    />
-                </div>
-
-                <div>
-                    <SubmitButton
-                        text='Confirm'
-                    />
-                </div>
-
-            </form>
+                <NumberSelector
+                    label='Number of Restrictions'
+                    numbers={Array.from({ length: 40 }, (_, index) => index + 1)}
+                    onNumberSelect={(e) => onChangeNRestriction(e)}
+                    disabled=''
+                    defaultValue={nRestriction}
+                />
+            </div>
 
         </div>
+
     )
 }
 

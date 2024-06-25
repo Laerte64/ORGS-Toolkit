@@ -1,4 +1,74 @@
+import { useEffect, useRef, useState } from 'react';
 import InputConstraintLimit from "./form/InputConstraintLimit";
+import InputInequalityType from "./form/InputInequalityType";
+import InputRestrictionValue from "./form/InputRestriction";
+
+interface InputRestrictionsProps {
+  nVariable: number;
+  nRestrictions: number;
+}
+
+function InputRestrictions({ nVariable, nRestrictions }: InputRestrictionsProps) {
+  const ref = useRef<HTMLDivElement[]>([]);
+
+  // Estado para armazenar o estilo de justificação para cada restrição
+  const [justification, setJustification] = useState<string[]>(new Array(nRestrictions).fill("justify-center"));
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      const newJustification = justification.slice(); // Copia o estado atual
+      ref.current.forEach((element, index) => {
+        if (element && element.scrollWidth > element.clientWidth) {
+          newJustification[index] = "justify-left";
+        } else {
+          newJustification[index] = "justify-center";
+        }
+      });
+      setJustification(newJustification);
+    };
+
+    checkOverflow();
+
+    // Ouvinte para mudanças de tamanho que podem afetar o overflow
+    window.addEventListener('resize', checkOverflow);
+    return () => {
+      window.removeEventListener('resize', checkOverflow);
+    };
+  }, [nRestrictions, nVariable]); // Dependências que podem causar re-renderização
+
+  return (
+    <div className="pt-5">
+      <h1 className="pb-3 text-2xl font-bold">Restrictions:</h1>
+      <div className="flex-wrap justify-center overflow-x-scroll">
+        <div className="">
+          {Array.from({ length: nRestrictions }, (_, index_) => (
+          
+            <div ref={el => ref.current[index_] = el} className={`flex ${justification[index_]} p-1`} key={`restriction-${index_}`}>
+
+              {Array.from({ length: nVariable }, (_, index) => (
+                <InputRestrictionValue
+                  key={index}
+                  xVariable={index + 1}
+                  xRestriction={index_ + 1}
+                  label={`x${index + 1}`}
+                />
+              ))}
+
+              <InputInequalityType xRestriction={index_ + 1} />
+
+              <InputConstraintLimit xRestriction={index_ + 1} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default InputRestrictions;
+
+
+/*import InputConstraintLimit from "./form/InputConstraintLimit";
 import InputInequalityType from "./form/InputInequalityType";
 import InputRestrictionValue from "./form/InputRestriction";
 
@@ -27,7 +97,7 @@ function InputRestrictions({ nVariable, nRestrictions, handleRestrictionsValue }
 
       <h1 className="pb-3 text-2xl font-bold">Restrictions:</h1>
 
-      <div className="flex-wrap justify-center">
+      <div className="flex-wrap justify-center overflow-x-scroll">
 
         <div>
 
@@ -37,10 +107,7 @@ function InputRestrictions({ nVariable, nRestrictions, handleRestrictionsValue }
               {Array.from({ length: nVariable }, (_, index) => (
                 <>
 
-                  
                   <div className="flex justify-center p-1">
-
-
 
                     <div className="flex">
 
@@ -85,3 +152,5 @@ function InputRestrictions({ nVariable, nRestrictions, handleRestrictionsValue }
 }
 
 export default InputRestrictions
+*/
+

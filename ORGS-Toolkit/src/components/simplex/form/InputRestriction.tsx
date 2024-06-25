@@ -17,7 +17,7 @@ function InputRestrictionValue({ xRestriction, xVariable, label, handleChange }:
         <div className="flex p1">
 
             <input
-                className='border-2 border-black rounded-md text-center w-24'
+                className='border-2 border-black rounded-md text-center w-24 h-7'
                 name={"x" + xVariable}
                 type="number"
                 onChange={handleInputChange}
