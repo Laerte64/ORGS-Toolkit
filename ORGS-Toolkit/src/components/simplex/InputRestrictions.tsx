@@ -6,11 +6,10 @@ import InputRestrictionValue from "./form/InputRestriction";
 interface InputRestrictionsProps {
   nVariable: number;
   nRestrictions: number;
-  handleAddRestriction?: () => void;
+  handleAddRestriction: () => void;
 }
 
 function InputRestrictions({ nVariable, nRestrictions, handleAddRestriction }: InputRestrictionsProps) {
-
   const ref = useRef<HTMLDivElement[]>([]);
 
   // Estado para armazenar o estilo de justificação para cada restrição
@@ -54,9 +53,13 @@ function InputRestrictions({ nVariable, nRestrictions, handleAddRestriction }: I
                 />
               ))}
 
-              <InputInequalityType xRestriction={index_ + 1} />
+              <InputInequalityType
+                xRestriction={index_ + 1}
+              />
 
-              <InputConstraintLimit xRestriction={index_ + 1} />
+              <InputConstraintLimit
+                xRestriction={index_ + 1}
+              />
 
               {index_ + 1 == nRestrictions && (
                 <button onClick={handleAddRestriction} className='w-6 -ml-6 border border-black relative left-10 rounded-md bg-white'>

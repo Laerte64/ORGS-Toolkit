@@ -61,22 +61,6 @@ function Simplex(): JSX.Element {
         }
     }
 
-    function initialVariableReturn(): number{
-        // Attempt to retrieve the value from localStorage.
-        const saved = localStorage.getItem('nVariable');
-        // If a value is found, parse it as an integer using base 10.
-        // If not found, default to 1.
-        return saved ? parseInt(saved, 10) : 1;
-    }
-
-    function initialRestrictionReturn(): number{
-        // Attempt to retrieve the value from localStorage.
-        const saved = localStorage.getItem('nRestriction');
-        // If a value is found, parse it as an integer using base 10.
-        // If not found, default to 1.
-        return saved ? parseInt(saved, 10) : 1;
-    }
-
     return (
         <div className='text-center w-full'>
 

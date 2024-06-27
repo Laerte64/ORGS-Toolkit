@@ -24,7 +24,7 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
 
     return (
         <div className="mt-2">
-            <div className='m-5'>
+            <div className='my-4'>
                 
                 <h1 className="p-1 text-xl">What is the purpose of the function?</h1>
 
@@ -40,7 +40,7 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
             </div>
 
             <div className="flex-wrap justify-center">
-                <div className="bg-gray-100 p-5 rounded-xl">
+                <div className="bg-gray-100 p-5 rounded-xl m-5">
                     <InputVariables
                         nVariable={nVariable}
                         hangleChange={setFunctionValues}

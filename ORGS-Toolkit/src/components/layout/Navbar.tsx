@@ -15,7 +15,7 @@ function Navbar(): JSX.Element {
     }
 
     return (
-        <nav className="flex justify-between items-center bg-blue-800 py-10">
+        <nav className="flex justify-between items-center bg-blue-800 py-8">
 
             <div className="w-1/12"></div> {/* Usado para empurrar o conteúdo para o centro e direita */}
 

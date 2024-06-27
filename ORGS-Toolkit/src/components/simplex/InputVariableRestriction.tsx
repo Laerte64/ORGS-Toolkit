@@ -41,7 +41,6 @@ function InputVariableRestriction({ handleVariableRestriction, initialVariable, 
                     numbers={Array.from({ length: 25 }, (_, index) => index + 1)}
                     onNumberSelect={onChangeNVariable}
                     disabled=''
-                    defaultValue={nVariable}  // Agora é controlado, use value ao invés de defaultValue para atualização constante
                     value={nVariable}
                 />
 
@@ -50,7 +49,6 @@ function InputVariableRestriction({ handleVariableRestriction, initialVariable, 
                     numbers={Array.from({ length: 40 }, (_, index) => index + 1)}
                     onNumberSelect={onChangeNRestriction}
                     disabled=''
-                    defaultValue={nRestriction}
                     value={nRestriction}
                 />
             </div>
