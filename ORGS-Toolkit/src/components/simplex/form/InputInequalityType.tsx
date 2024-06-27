@@ -23,7 +23,7 @@ function InputInequalityType({ onInequalitySelect, xRestriction }: InputInequali
             <select
                 value={selectedInequality}  // Usar o estado local como o valor do select
                 onChange={handleChange}
-                className='border border-black p-1 rounded-md w-10 text-black bg-white'
+                className='border border-black rounded-md w-10 mt-1 text-black bg-white'
                >
                 <option key={ConstraintType.LessThanOrEqual} value={ConstraintType.LessThanOrEqual} className='text-black bg-'>
                     ≤

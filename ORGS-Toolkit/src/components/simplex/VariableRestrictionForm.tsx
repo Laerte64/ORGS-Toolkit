@@ -9,9 +9,10 @@ interface VariableRestrictionFormProps {
     nRestriction: number;
     setFunctionValues: (functionValues: number[]) => void;
     setPurposeFuncOpsInput: (purposeFunc: PurposeFuncOps) => void;
+    handleAddRestriction: () => void;
 }
 
-function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, setPurposeFuncOpsInput }: VariableRestrictionFormProps) {
+function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, setPurposeFuncOpsInput, handleAddRestriction }: VariableRestrictionFormProps) {
 
     //Using the state with the ePurposeFuncOps
     const [purposeFunc, setPurposeFunc] = useState<PurposeFuncOps>(PurposeFuncOps.Maximize);
@@ -28,7 +29,7 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
                 <h1 className="p-1 text-xl">What is the purpose of the function?</h1>
 
                 <select
-                    className='border border-black p-1 rounded-md px-3'
+                    className='border border-black p-1 rounded-md px-3 '
                     value={purposeFunc}
                     onChange={handleSelectChange}
                 >
@@ -48,6 +49,7 @@ function VariableRestrictionForm({ nVariable, nRestriction, setFunctionValues, s
                     <InputRestrictions
                         nVariable={nVariable}
                         nRestrictions={nRestriction}
+                        handleAddRestriction={handleAddRestriction}
                     />
 
                 </div>

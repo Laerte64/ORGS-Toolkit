@@ -3,6 +3,3 @@ export enum ConstraintType {
     GreaterThanOrEqual = "≥",
     Equal = "="
 }
-
-
-

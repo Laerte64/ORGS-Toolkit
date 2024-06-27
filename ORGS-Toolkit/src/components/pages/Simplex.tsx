@@ -7,9 +7,24 @@ import VariableRestrictionForm from '../simplex/VariableRestrictionForm';
 import { PurposeFuncOps } from './../../types/enum/PurposeFuncOps'
 
 function Simplex(): JSX.Element {
-    const [nVariable, setnVariable] = useState<number | null>(null);
-    const [nRestriction, setnRestriction] = useState<number | null>(null);
+    const [nVariable, setnVariable] = useState<number>(() => {
+        // Attempt to retrieve the value from localStorage.
+        const saved = localStorage.getItem('nVariable');
+        // If a value is found, parse it as an integer using base 10.
+        // If not found, default to 1.
+        return saved ? parseInt(saved, 10) : 1;
+    });
+
+    const [nRestriction, setnRestriction] = useState<number>(() => {
+        // Attempt to retrieve the value from localStorage.
+        const saved = localStorage.getItem('nRestriction');
+        // If a value is found, parse it as an integer using base 10.
+        // If not found, default to 1.
+        return saved ? parseInt(saved, 10) : 1;
+    });
+
     const [functionValues, setFunctionValues] = useState<number[]>([]);
+
     const [purposeFuncOps, setPurposeFuncOps] = useState<PurposeFuncOps>(PurposeFuncOps.Maximize);
 
     console.log(purposeFuncOps);
@@ -36,11 +51,39 @@ function Simplex(): JSX.Element {
         setPurposeFuncOps(purposeFunc);
     }
 
+    function addRestriction(){
+        if(nRestriction){
+            const nRestriction_ = nRestriction + 1
+
+            localStorage.setItem('nRestriction', nRestriction_.toString());
+
+            setnRestriction(nRestriction + 1);
+        }
+    }
+
+    function initialVariableReturn(): number{
+        // Attempt to retrieve the value from localStorage.
+        const saved = localStorage.getItem('nVariable');
+        // If a value is found, parse it as an integer using base 10.
+        // If not found, default to 1.
+        return saved ? parseInt(saved, 10) : 1;
+    }
+
+    function initialRestrictionReturn(): number{
+        // Attempt to retrieve the value from localStorage.
+        const saved = localStorage.getItem('nRestriction');
+        // If a value is found, parse it as an integer using base 10.
+        // If not found, default to 1.
+        return saved ? parseInt(saved, 10) : 1;
+    }
+
     return (
         <div className='text-center w-full'>
 
             <InputVariableRestriction
                 handleVariableRestriction={setVariableRestriction}
+                initialVariable={nVariable}
+                initialRestriction={nRestriction}
             />
 
             {nVariable && nRestriction && (
@@ -49,6 +92,7 @@ function Simplex(): JSX.Element {
                     nRestriction={nRestriction}
                     setFunctionValues={setFunctionValuesInput}
                     setPurposeFuncOpsInput={setPurposeFuncOpsInput}
+                    handleAddRestriction={addRestriction}
                 />
             )}
 
