@@ -1,0 +1,15 @@
+{
+    "home": {
+        "title": "Titulo pt",
+        "body": "lorem100  dsada34ghfdhfdh pt"
+    },
+    "footer": {
+        "service": "Service"
+    },
+    "navbar": {
+        "home": "Home",
+        "linear_programming": "Programação Linear",
+        "simplex": "Simplex",
+        "developed_by": "Desenvolvido Por"
+    }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import InputVariableRestriction from '../simplex/InputVariableRestriction';
 import VariableRestrictionForm from '../simplex/VariableRestrictionForm';
@@ -7,6 +8,8 @@ import VariableRestrictionForm from '../simplex/VariableRestrictionForm';
 import { PurposeFuncOps } from './../../types/enum/PurposeFuncOps'
 
 function Simplex(): JSX.Element {
+    const { t } = useTranslation("simplex");
+
     const [nVariable, setnVariable] = useState<number>(() => {
         // Attempt to retrieve the value from localStorage.
         const saved = localStorage.getItem('nVariable');
