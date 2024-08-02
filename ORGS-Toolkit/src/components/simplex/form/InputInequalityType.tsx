@@ -1,42 +1,42 @@
-import { useState } from 'react';
-import { ConstraintType } from '../../../types/enum/InequalityTypeOps'
+import React from 'react';
+import { EqualityType } from '../../../model/simplex/restriction';
 
 interface InputInequalityTypeProps {
-    onInequalitySelect: (inequality: string, xRestriction: number) => void;
-    xRestriction: number;
+  xRestriction: number;
+  value: number;
+  handleChange: (xRestriction: number, type: number) => void;
 }
 
-function InputInequalityType({ onInequalitySelect, xRestriction }: InputInequalityTypeProps): JSX.Element {
-    // Adicionando estado local para gerenciar o valor selecionado
-    const [selectedInequality, setSelectedInequality] = useState<string>(ConstraintType.LessThanOrEqual);
+function InputInequalityType({
+  xRestriction,
+  value,
+  handleChange,
+}: InputInequalityTypeProps): JSX.Element {
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newValue = e.target.value;
-        console.log("Antes da Mudança: ", selectedInequality);
-        setSelectedInequality(newValue);
-        console.log("Depois da Mudança: ", newValue);
-        onInequalitySelect(newValue, xRestriction);
-    };
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = parseInt(e.target.value, 10);
+    handleChange(xRestriction, newValue);
+  };
 
-    return (
-        <div>
-            <select
-                value={selectedInequality}  // Usar o estado local como o valor do select
-                onChange={handleChange}
-                className='border border-black rounded-md w-10 mt-1 text-black bg-white'
-               >
-                <option key={ConstraintType.LessThanOrEqual} value={ConstraintType.LessThanOrEqual} className='text-black bg-'>
-                    ≤
-                </option>
-                <option key={ConstraintType.GreaterThanOrEqual} value={ConstraintType.GreaterThanOrEqual} className='text-black'>
-                    ≥
-                </option>
-                <option key={ConstraintType.Equal} value={ConstraintType.Equal} className='text-black'>
-                    =
-                </option>
-            </select>
-        </div>
-    );
+  return (
+    <div>
+      <select
+        value={value}
+        onChange={handleInputChange}
+        className="border border-black rounded-md w-10 mt-1 text-black bg-white"
+      >
+        <option value={EqualityType.lower} className="text-black">
+          ≤
+        </option>
+        <option value={EqualityType.greater} className="text-black">
+          ≥
+        </option>
+        <option value={EqualityType.equal} className="text-black">
+          =
+        </option>
+      </select>
+    </div>
+  );
 }
 
 export default InputInequalityType;

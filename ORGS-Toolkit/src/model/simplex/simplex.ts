@@ -4,8 +4,6 @@ import SimplexBuilder from "./simplex_builder";
 import SimplexPhase from "./simplex_phase";
 import Variable from "./variable";
 
-
-
 export default class Simplex {
 
     #phase: SimplexPhase;

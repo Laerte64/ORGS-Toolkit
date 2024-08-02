@@ -25,7 +25,7 @@ function DevelopedBy(): JSX.Element {
                     photo="https://media.istockphoto.com/id/1415960925/pt/foto/a-close-up-shot-of-a-hand-and-a-sheet-of-paper-on-which-a-student-takes-notes-during-a-lecture.jpg?s=2048x2048&w=is&k=20&c=iqBFvwxfz2E-xUo3RA290chS3u0pUZze7pHSn3FquCI="
 
                     developmentArea="frontend"
-                    description="Full-stack developer at Video Som Auto Center and student at UTFPR"
+                    description="Fullstack developer at Video Som Auto Center and student at UTFPR"
                     github=" "
                     linkedIn=" "
                 />
@@ -35,7 +35,7 @@ function DevelopedBy(): JSX.Element {
 
                     photo="https://media.istockphoto.com/id/1415960925/pt/foto/a-close-up-shot-of-a-hand-and-a-sheet-of-paper-on-which-a-student-takes-notes-during-a-lecture.jpg?s=2048x2048&w=is&k=20&c=iqBFvwxfz2E-xUo3RA290chS3u0pUZze7pHSn3FquCI="
 
-                    developmentArea="back-end"
+                    developmentArea="backend"
                     description="fsdg sd fsd fsdf sdf gergh fdgfdgasdf fdf dasd"
                     github=" "
                     linkedIn=" "

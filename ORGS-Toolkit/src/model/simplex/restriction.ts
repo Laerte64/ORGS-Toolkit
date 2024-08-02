@@ -5,7 +5,6 @@ export enum EqualityType {
 }
 
 export default class Restriction {
-
     type: EqualityType;
     coef: number[];
     limit: number;
